@@ -1,0 +1,40 @@
+{
+  "name": "highscore",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently --kill-others \"tsc -w\" \"nodemon dist/server.js -e js\"",
+    "debug": "concurrently --kill-others \"tsc -w\" \"nodemon --inspect dist/server.js -e js\"",
+    "test:watch": "mocha -r ts-node/register -w ./spec/**/*.spec.ts --watch-extensions ts",
+    "test": "mocha -r ts-node/register -w ./spec/**/*.spec.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "format": "prettier --write 'src/**/*ts'",
+    "lint": "tsc --noEmit && eslint \"src/**/*.{js,ts}\""
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "errorhandler": "^1.5.1",
+    "express": "^4.17.1",
+    "express-winston": "^4.0.3",
+    "http-status-codes": "^1.4.0",
+    "knex": "^0.20.13",
+    "pg": "^8.0.2",
+    "pg-promise": "^10.5.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/dotenv": "^8.2.0",
+    "@types/errorhandler": "^1.5.0",
+    "@types/express": "^4.17.6",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
+    "concurrently": "^5.1.0",
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.3",
+    "typescript": "^3.8.3"
+  }
+}
