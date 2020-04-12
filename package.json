@@ -36,5 +36,9 @@
     "eslint": "^6.8.0",
     "nodemon": "^2.0.3",
     "typescript": "^3.8.3"
+  },
+  "engines": {
+    "yarn": "1.21.1",
+    "node": "12.16.1"
   }
 }
