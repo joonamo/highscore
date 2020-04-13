@@ -1,6 +1,6 @@
 import { Router } from "express" 
-import { getScores, persistScore } from "./scoreService"
-import { NO_CONTENT } from "http-status-codes"
+import { getScores, persistScore, validateScore } from "./scoreService"
+import { NO_CONTENT, FORBIDDEN } from "http-status-codes"
 
 export const gameRouter = Router()
 
@@ -17,9 +17,13 @@ gameRouter.get("/:gameId/scores", async (req, res, next) => {
 gameRouter.post("/:gameId/score", async (req, res, next) => {
   try {
     const gameId = req.params["gameId"]
-    const { playerName, score } = req.body
-    await persistScore(gameId, playerName, score)
-    res.status(NO_CONTENT).send()
+    const { player, score, meta, validation, time } = req.body
+    if (await validateScore({ gameId, player, score, meta, validation, time })) {
+      await persistScore(gameId, player, score, meta)
+      res.status(NO_CONTENT).send()
+    } else {
+      res.status(FORBIDDEN).send()
+    }
   } catch (e) {
     next(e)
   }

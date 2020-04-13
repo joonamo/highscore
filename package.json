@@ -21,6 +21,7 @@
     "express-winston": "^4.0.3",
     "http-status-codes": "^1.4.0",
     "knex": "^0.20.13",
+    "moment": "^2.24.0",
     "pg": "^8.0.2",
     "pg-promise": "^10.5.0",
     "winston": "^3.2.1"
