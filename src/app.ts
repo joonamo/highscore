@@ -5,9 +5,12 @@ import bodyParser from "body-parser"
 import winston from "winston"
 import expressWinston from "express-winston"
 import { gameRouter } from "./gameRouter"
+import cors from "cors"
 
 // Create Express server
 const app = express()
+app.options("*", cors())
+app.use(cors())
 
 // Express configuration
 app.set("port", process.env.PORT || 3000)

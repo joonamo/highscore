@@ -62,7 +62,5 @@ export const validateScore = async (score: ScorePost): Promise<boolean> => {
   const toValidate = `${score.gameId}-${score.score}-${score.player}-${score.time}-${game.secret}`
   const validationHash = crypto.createHash("md5").update(toValidate).digest("hex")
 
-  console.log("Validation failed for", toValidate)
-  console.log(validationHash)
   return validationHash === score.validation
 }
