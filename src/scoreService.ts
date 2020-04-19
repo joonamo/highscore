@@ -60,8 +60,9 @@ async (gameId: UUID, numScores: number = 10): Promise<ScoreEntry[]> => {
         FROM scores
         WHERE game_id = $/gameId/
         ORDER BY score DESC, player desc, time ASC
-        LIMIT 100
+        LIMIT 10000
       ) a
+      ORDER BY player DESC, score DESC
     )b
     ORDER BY score DESC
     LIMIT $/numScores/;
