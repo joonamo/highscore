@@ -70,6 +70,27 @@ async (gameId: UUID, numScores: number = 10): Promise<ScoreEntry[]> => {
     .then(fixDbOutput)
 }
 
+export const getDistinctScoresPerPlayer =
+  async (gameId: UUID, numScores: number = 10): Promise<ScoreEntry[]> => {
+    return await db.manyOrNone<ScoreEntryFromDb>(`
+    SELECT *
+    FROM (
+      SELECT distinct on (a.player) player, *
+      FROM (
+        SELECT distinct on (score, player) score, player, id, time, game_id as "gameId", meta
+        FROM scores
+        WHERE game_id = $/gameId/
+        ORDER BY score DESC, player desc, time ASC
+        LIMIT 10000
+      ) a
+      ORDER BY player DESC, score DESC
+    )b
+    ORDER BY score DESC
+    LIMIT $/numScores/;
+  `, { gameId, numScores })
+      .then(fixDbOutput)
+  }
+
 export const validateScore = async (score: ScorePost): Promise<boolean> => {
   const game = await getGameById(score.gameId)
   if (!game.strictValidation) {
