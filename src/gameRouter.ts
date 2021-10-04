@@ -13,10 +13,10 @@ export const gameRouter = Router()
 gameRouter.get("/:gameId/scores", async (req, res, next) => {
   try {
     const gameId = req.params["gameId"]
-    const { distinct, perPlayer } = req.query
+    const { distinct, perPlayer, count } = req.query
     const query = 
       distinct ? getDistinctScores : (perPlayer ? getDistinctScoresPerPlayer : getScores)
-    const scores = await query(gameId)
+    const scores = await query(gameId, Number(count || 10))
     res.json(scores)
   } catch (e) {
     next(e)
