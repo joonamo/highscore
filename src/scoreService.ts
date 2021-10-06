@@ -73,20 +73,14 @@ async (gameId: UUID, numScores: number = 10): Promise<ScoreEntry[]> => {
 export const getDistinctScoresPerPlayer =
   async (gameId: UUID, numScores: number = 10): Promise<ScoreEntry[]> => {
     return await db.manyOrNone<ScoreEntryFromDb>(`
-    SELECT *
-    FROM (
-      SELECT distinct on (a.player) player, *
-      FROM (
-        SELECT distinct on (score, player) score, player, id, time, game_id as "gameId", meta
-        FROM scores
-        WHERE game_id = $/gameId/
-        ORDER BY score DESC, player desc, time ASC
-        LIMIT 10000
-      ) a
-      ORDER BY player DESC, score DESC
-    )b
-    ORDER BY score DESC
-    LIMIT $/numScores/;
+    select score, player, id, time, game_id as "gameId", meta from (
+      select distinct on (player) *
+      from scores
+      WHERE game_id = $/gameId/
+      order by player, score desc
+    ) a
+    order by score desc, time asc
+    limit $/numScores/;
   `, { gameId, numScores })
       .then(fixDbOutput)
   }
