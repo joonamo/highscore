@@ -10,7 +10,13 @@ const dbUrl = process.env.DATABASE_URL!
 export const pgp: IMain = pgPromise()
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const db: IDatabase<any> = pgp(dbUrl)
+export const db: IDatabase<any> = pgp({
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.DATABASE_SSL === "true" && {
+    rejectUnauthorized: true,
+    ca: process.env.DB_CA
+  }
+})
 
 export function migrations() {
   return db.many("SELECT * FROM knex_migrations")

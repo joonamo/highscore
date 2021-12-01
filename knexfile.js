@@ -3,7 +3,13 @@ require("dotenv").config()
 
 const settings = {
   client: "postgresql",
-  connection: process.env.DATABASE_URL,
+  connection: {
+    connectionString: process.env.DATABASE_URL,
+    ssl: process.env.DATABASE_SSL === "true" && {
+      rejectUnauthorized: true,
+      ca: process.env.DB_CA
+    }
+  }
 }
 
 module.exports = {
