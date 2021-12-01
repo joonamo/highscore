@@ -3,7 +3,7 @@ require("dotenv").config()
 
 const settings = {
   client: "postgresql",
-  connection: process.env.DATABASE_URL
+  connection: process.env.DATABASE_URL,
 }
 
 module.exports = {

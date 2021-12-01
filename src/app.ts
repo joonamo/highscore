@@ -9,7 +9,6 @@ import cors from "cors"
 
 // Create Express server
 const app = express()
-app.options("*", cors())
 app.use(cors())
 
 // Express configuration
