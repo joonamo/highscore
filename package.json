@@ -22,7 +22,7 @@
     "express": "4.17.2",
     "express-winston": "4.2.0",
     "http-status-codes": "2.2.0",
-    "knex": "2.3.0",
+    "knex": "2.4.0",
     "moment": "2.29.2",
     "pg": "8.8.0",
     "pg-promise": "10.12.0",
