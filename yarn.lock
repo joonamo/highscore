@@ -1820,7 +1820,7 @@ __metadata:
     express: 4.17.2
     express-winston: 4.2.0
     http-status-codes: 2.2.0
-    knex: 2.3.0
+    knex: 2.4.0
     moment: 2.29.2
     nodemon: 2.0.15
     pg: 8.8.0
@@ -2182,9 +2182,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"knex@npm:2.3.0":
-  version: 2.3.0
-  resolution: "knex@npm:2.3.0"
+"knex@npm:2.4.0":
+  version: 2.4.0
+  resolution: "knex@npm:2.4.0"
   dependencies:
     colorette: 2.0.19
     commander: ^9.1.0
@@ -2217,7 +2217,7 @@ __metadata:
       optional: true
   bin:
     knex: bin/cli.js
-  checksum: ec00da6dd622a386507881e9d8ad44b9c5a4d9f272889b181cafb856fd26d7fdb19ef009cecdbbdedaf7c76f985a8fd14348ae47a0bb77b3dbec15f2c03c0dfe
+  checksum: 66b4ae8412c61125b78512a66d924af95116628e16026efce4d03b80b2ced6b63208b37bb49fb52a499761da5e8981e136b48fcefcd48c3fe9fc72d9d17c5661
   languageName: node
   linkType: hard
 
