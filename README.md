@@ -1,3 +1,5 @@
+Deprecated! New maintained version is [highscore-supabase](https://github.com/joonamo/highscore-supabase)
+
 # Highscore
 
 A simple node.js server to store scoreboards for gamejam games. One server instance can serve multiple games and store arbitrary metadata with scores. API-only, doesn't come with any GUI. Supports posting the scores over HTTP as JSON or form data, metadata supported only on JSON. Supports simple verification of posted scores to avoid someone just spamming whatever score they want.
